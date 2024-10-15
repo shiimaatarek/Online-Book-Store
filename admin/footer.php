@@ -6,9 +6,9 @@
                             $result = $db->getResult();
 
                             if(count($result) > 0){ ?>
-                                <span>Created By SIT</span>
+                                <span>Created By Shaimaa Team</span>
                             <?php }else{ ?>
-                                <span>Created By sit</span>
+                                <span>Created By Shaimaa Team</span>
                             <?php }
                             ?>
                             

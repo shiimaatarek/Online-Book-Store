@@ -12,7 +12,7 @@ if(isset($_POST['login'])){
         
         $db = new Database(); 
         $username = $db->escapeString($_POST["name"]);
-        $password = md5($db->escapeString($_POST["pass"])); 
+        $password = ($db->escapeString($_POST["pass"])); 
 
         $db->select('admin','admin_name',null,"username = '$username' AND password = '$password'",null,0); 
         $result = $db->getResult();

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2021 at 04:09 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Dec 26, 2023 at 03:49 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,14 +39,15 @@ CREATE TABLE `admin` (
   `com_address` varchar(255) DEFAULT NULL,
   `cur_format` varchar(10) NOT NULL,
   `admin_role` tinyint(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `username`, `password`, `com_logo`, `com_name`, `com_email`, `com_phone`, `com_address`, `cur_format`, `admin_role`) VALUES
-(1, 'admin', 'admin', '7a19a4942dcd9122acf719dac92f294f', NULL, 'Inventory', 'inventory@gmail.com', NULL, NULL, '$', 1);
+(1, 'admin', 'admin', '7a19a4942dcd9122acf719dac92f294f', NULL, 'Inventory', 'inventory@gmail.com', NULL, NULL, '$', 1),
+(2, 'Mohamed', 'mohamedsaad', 'Admin@123', NULL, 'Inventory', 'inventory@gmail.com', NULL, NULL, '$', 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE `brands` (
   `brand_id` int(11) NOT NULL,
   `brand_title` text NOT NULL,
   `brand_cat` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `brands`
@@ -79,7 +79,7 @@ CREATE TABLE `categories` (
   `cat_id` int(100) NOT NULL,
   `cat_title` text NOT NULL,
   `products` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `categories`
@@ -111,7 +111,7 @@ CREATE TABLE `options` (
   `contact_phone` varchar(15) DEFAULT NULL,
   `contact_email` varchar(100) DEFAULT NULL,
   `contact_address` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `options`
@@ -136,7 +136,7 @@ CREATE TABLE `order_products` (
   `pay_req_id` varchar(100) DEFAULT NULL,
   `confirm` tinyint(4) NOT NULL DEFAULT 0,
   `delivery` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `order_products`
@@ -144,7 +144,7 @@ CREATE TABLE `order_products` (
 
 INSERT INTO `order_products` (`order_id`, `product_id`, `product_qty`, `total_amount`, `product_user`, `order_date`, `pay_req_id`, `confirm`, `delivery`) VALUES
 (1, '1,2,', '1,1,', '390', 1, '2021-04-30', '4100d69c7e7a4e2aa7b70014495629ea', 0, 1),
-(2, '3,', '1,', '250', 2, '2021-05-03', '0fe38dceb7384bb7a3b1432ec7f3193e', 0, 0);
+(2, '3,', '1,', '250', 2, '2021-05-03', '0fe38dceb7384bb7a3b1432ec7f3193e', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -154,11 +154,11 @@ INSERT INTO `order_products` (`order_id`, `product_id`, `product_qty`, `total_am
 
 CREATE TABLE `payments` (
   `payment_id` int(11) NOT NULL,
-  `item_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `txn_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `item_number` varchar(50) NOT NULL,
+  `txn_id` varchar(50) NOT NULL,
   `payment_gross` float(10,2) NOT NULL,
-  `currency_code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `payment_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `currency_code` varchar(5) NOT NULL,
+  `payment_status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -189,16 +189,23 @@ CREATE TABLE `products` (
   `product_keywords` text DEFAULT NULL,
   `product_views` int(11) DEFAULT 0,
   `product_status` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`product_id`, `product_code`, `product_cat`, `product_sub_cat`, `product_brand`, `product_title`, `product_price`, `product_desc`, `featured_image`, `qty`, `product_keywords`, `product_views`, `product_status`) VALUES
-(1, '608746e46b277', 12, 1, 14, 'Mathematics Grade 9 (Science Group)', '180', '&lt;span style=&quot;color: rgb(44, 62, 80); font-family: Lato, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 15px;&quot;&gt;Mathematics 9 is written by Dr. Karamat H. Dar and Prof. Irfan-ul-Haq and this book is published by Carvan Book House, Lahore, Pakistan. This book consist of 302 pages and there are 17 units. Notes of Unit 1 and 3 are provided by&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;color: rgb(44, 62, 80); font-family: Lato, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 15px;&quot;&gt;&lt;a href=&quot;https://www.mathcity.org/people/moin&quot; class=&quot;wikilink1&quot; title=&quot;people:moin&quot; data-wiki-id=&quot;people:moin&quot; style=&quot;color: rgb(24, 188, 156); text-decoration-line: none;&quot;&gt;Engr. Moin Latif&lt;/a&gt;&lt;/b&gt;&lt;span style=&quot;color: rgb(44, 62, 80); font-family: Lato, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; font-size: 15px;&quot;&gt;. We are very thankful to him for providing these notes.&lt;/span&gt;', '1619478244math.jpg', 90, NULL, 7, 1),
-(2, '608c49011b61d', 12, 1, 14, 'Physics Grade 9 (Caravan Book House)', '210', '&lt;p style=&quot;margin-bottom: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: &amp;quot;Open Sans&amp;quot;, sans-serif; vertical-align: baseline; color: rgb(85, 85, 85); background-color: rgb(246, 246, 246);&quot;&gt;Free download the book Physics 9th Class&lt;b style=&quot;margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;&quot;&gt;&amp;nbsp;&lt;/b&gt;English medium students. This book is by&amp;nbsp;&lt;a href=&quot;http://www.ptb.gop.pk/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; style=&quot;margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; text-decoration-line: none; color: rgb(227, 87, 38); transition: background-color 0s ease 0s, color 0.2s linear 0s; -webkit-tap-highlight-color: rgb(255, 94, 153);&quot;&gt;Punjab Curriculum and Textbook Board&lt;/a&gt;, Lahore, and published by Caravan Book House, Lahore.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: &amp;quot;Open Sans&amp;quot;, sans-serif; vertical-align: baseline; color: rgb(85, 85, 85); background-color: rgb(246, 246, 246);&quot;&gt;The authors of the book are Prof. Tahir Hassan and Prof. Muhammad Naeem Anwar.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: &amp;quot;Open Sans&amp;quot;, sans-serif; vertical-align: baseline; color: rgb(85, 85, 85); background-color: rgb(246, 246, 246);&quot;&gt;The Case for Physics&lt;br&gt;Trefil refers back to the “physics first” technique presented through 1988 Nobel Laureate Leon Lederman in his Chicago-based instructional reforms.&lt;/p&gt;', '1619806465physics.jpg', 100, NULL, 2, 1),
-(3, '608c4a7fd90c2', 12, 2, 15, 'Physics Grade 10 ( Malik Siraj ud din and Sons)', '250', '&lt;p style=&quot;margin-bottom: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: &amp;quot;Open Sans&amp;quot;, sans-serif; vertical-align: baseline; color: rgb(85, 85, 85); background-color: rgb(246, 246, 246);&quot;&gt;Free download the Book&amp;nbsp;&lt;span style=&quot;margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; color: rgb(0, 0, 0);&quot;&gt;&lt;b style=&quot;margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;&quot;&gt;Physics&lt;/b&gt;&lt;/span&gt;&amp;nbsp;is for 10th class. This book is published by Malik Sirajuddin &amp;amp; Sons and authors of the book are Dr. Azmat Iqbal and Dr. Ghulam Murtaza.&lt;/p&gt;&lt;p style=&quot;margin-bottom: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: &amp;quot;Open Sans&amp;quot;, sans-serif; vertical-align: baseline; color: rgb(85, 85, 85); background-color: rgb(246, 246, 246);&quot;&gt;Ostensibly the best sci-fi “endeavor” of the twentieth century, “Star Trek” has caught the creative energies of millions since it debuted as a TV arrangement in 1966. As we watch the group of the Star-ship Endeavor experience life on different planets and attempt to coexist with outsider species, we start to perceive any reason why Quality Roddenberry’s “Wagon Prepare to the Stars” has produced three extra television arrangement, seven films, and a dedicated, bad-to-the-bone fan base. Star Trek inspires us to consider a future for mankind that is loaded with expectation and potential. It likewise takes advantage of the unconventionally American brand of idealism. From scene to scene, Skippers Kirk and Picard explore the Endeavor and its team out of apparently obstinate circumstances utilizing their creativity and cleverness.&lt;/p&gt;', '1619806847Physics-10th-1-1.jpg', 100, NULL, 3, 1);
+(4, 'MNO345', 9, 1, 0, 'Ancient Civilizations', '18.99', 'Exploring ancient cultures and civilizations', '4.jpg', 25, 'history, ancient', 126, 1),
+(5, 'PQR678', 10, 2, 0, 'Galactic Adventures', '32.99', 'Epic space adventures in a futuristic setting', '5.jpg', 15, 'science fiction, space, adventure', 50, 1),
+(6, 'STU901', 9, 1, 0, 'Empower Your Life', '14.99', 'Guidance for personal growth and motivation', '4.jpg', 35, 'self-help, motivation', 90, 1),
+(7, 'VWX234', 13, 2, 0, 'Italian Cooking Mastery', '27.99', 'Master the art of Italian cuisine with this cookbook', '4.jpg', 40, 'cooking, Italian, recipes', 83, 1),
+(8, 'YZA567', 15, 1, 0, 'Expressions of the Soul', '16.99', 'A collection of modern and heartfelt poems', '5.jpg', 20, 'poetry, emotions', 60, 1),
+(9, 'BCD890', 13, 2, 0, 'Adventures Around the Globe', '23.99', 'Explore the world with thrilling travel tales', '8.jpg', 30, 'travel, adventure', 104, 1),
+(10, 'EFG123', 11, 1, 0, 'Fit for Life', '19.99', 'A comprehensive guide to health and fitness', '4.jpg', 50, 'health, fitness', 70, 1),
+(11, 'HIJ456', 14, 2, 0, 'Startup Success', '26.99', 'Strategies for launching and growing a successful startup', '5.jpg', 25, 'business, entrepreneurship', 124, 1),
+(12, 'KLM789', 9, 1, 0, 'The Art of Colors', '21.99', 'Discover the beauty of painting and artistry', '5.jpg', 15, 'art, painting', 47, 1),
+(13, 'NOP012', 10, 2, 0, 'Innovations in the Digital Age', '34.99', 'Exploring cutting-edge technological innovations', '8.jpg', 40, 'technology, innovation', 90, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +217,7 @@ CREATE TABLE `product_cart` (
   `s_no` int(11) NOT NULL,
   `p_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -225,15 +232,15 @@ CREATE TABLE `sub_categories` (
   `cat_products` int(11) NOT NULL DEFAULT 0,
   `show_in_header` tinyint(4) NOT NULL DEFAULT 1,
   `show_in_footer` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sub_categories`
 --
 
 INSERT INTO `sub_categories` (`sub_cat_id`, `sub_cat_title`, `cat_parent`, `cat_products`, `show_in_header`, `show_in_footer`) VALUES
-(1, 'Grade 9', 12, 2, 1, 1),
-(2, 'Grade 10', 12, 1, 1, 1);
+(1, 'Islamic Book', 12, 2, 1, 1),
+(2, 'Fantasy Books', 12, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -252,7 +259,7 @@ CREATE TABLE `user` (
   `address` text NOT NULL,
   `city` text NOT NULL,
   `user_role` int(11) DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user`
@@ -260,7 +267,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `f_name`, `l_name`, `username`, `email`, `password`, `mobile`, `address`, `city`, `user_role`) VALUES
 (1, 'Mohsin', 'Riaz', 'mohsinriaz@gmail.com', '', '0d9e90566e81686467710cde1e09831c', '03086556432', 'UOG', 'Gujrat', 1),
-(2, 'tooba', 'butt', 'tooba@gmail.com', '', '827ccb0eea8a706c4c34a16891f84e7b', '03147876654', 'UOG Marghazar Gujrat', 'Gujrat', 1);
+(3, 'Mohamed', 'Saad', 'Sa3doni2714@gmail.com', '', '0e7517141fb53f21ee439b355b5a1d0a', '01098001021', 'Qena', 'Huw', 1);
 
 --
 -- Indexes for dumped tables
@@ -334,7 +341,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -370,7 +377,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_cart`
@@ -388,7 +395,7 @@ ALTER TABLE `sub_categories`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

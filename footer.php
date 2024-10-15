@@ -36,18 +36,18 @@
                 <h3>Contact Us</h3>
                 <ul class="menu-list">
                     <?php if(!empty($footer[0]['contact_address'])){ ?>
-                        <li><i class="fa fa-home" ></i><span>: Sethu Institue of technology</span></li>
+                        <li><i class="fa fa-home" ></i><span>: Benha Unversity</span></li>
                     <?php } ?>
                     <?php if(!empty($footer[0]['contact_phone'])){ ?>
-                        <li><i class="fa fa-phone" ></i><span>: 123456789</span></li>
+                        <li><i class="fa fa-phone" ></i><span>: 01098001021</span></li>
                     <?php } ?>
                     <?php if(!empty($footer[0]['contact_email'])){ ?>
-                        <li><i class="fa fa-envelope" ></i><span>: sethu.ac.in@gmail.com</span></li>
+                        <li><i class="fa fa-envelope" ></i><span>: dev.shaimaaTarek@gmail.com</span></li>
                     <?php } ?>
                 </ul>
             </div>
             <div class="col-md-12">
-                <span> Created by <a href="#" target="_blank">sit</a></span>
+                <span> Created by <a href="#" target="_blank">Shaimaa Team</a></span>
             </div>
         </div>
     </div>

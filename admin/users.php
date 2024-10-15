@@ -6,7 +6,7 @@
         <?php
         $limit = 10;
         $db = new Database();
-        $db->select('user','*',null,null,'user_id DESC',2);
+        $db->select('user','*',null,null,'user_id DESC',20);
         $result = $db->getResult();
         if (count($result) > 0) { ?>
             <table class="table table-striped table-hover table-bordered">
